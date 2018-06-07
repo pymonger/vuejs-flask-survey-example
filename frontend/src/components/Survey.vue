@@ -78,7 +78,7 @@ export default {
     },
     goToPreviousQuestion () {
       if (this.currentQuestion === 0) {
-        this.currentQuestion = this.survey.questions.lenth - 1
+        this.currentQuestion = this.survey.questions.length - 1
       } else {
         this.currentQuestion--
       }
