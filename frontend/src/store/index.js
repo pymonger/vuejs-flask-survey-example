@@ -44,7 +44,8 @@ const actions = {
       .then(response => context.commit('setJwtToken', { jwt: response.data }))
       .catch(error => {
         console.log('Error Authenticating: ', error)
-        EventBus.$emit('failedAuthentication', error)
+        EventBus.$emit('failedAuthentication', error.response.data.message)
+        throw error
       })
   },
   register (context, userData) {
@@ -53,7 +54,8 @@ const actions = {
       .then(context.dispatch('login', userData))
       .catch(error => {
         console.log('Error Registering: ', error)
-        EventBus.$emit('failedRegistering: ', error)
+        EventBus.$emit('failedRegistering: ', error.response.data.message)
+        throw error
       })
   }
 }
