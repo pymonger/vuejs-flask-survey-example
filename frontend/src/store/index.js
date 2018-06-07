@@ -16,11 +16,17 @@ const actions = {
   // asynchronous operations
   loadSurveys (context) {
     return fetchSurveys()
-      .then((response) => context.commit('setSurveys', { surveys: response }))
+      .then((response) => {
+        // console.log(response.data.surveys.toSource())
+        context.commit('setSurveys', { surveys: response.data.surveys })
+      })
   },
   loadSurvey (context, { id }) {
     return fetchSurvey(id)
-      .then((response) => context.commit('setSurvey', { survey: response }))
+      .then((response) => {
+        console.log(response.data.survey.toSource())
+        context.commit('setSurvey', { survey: response.data.survey })
+      })
   },
   addSurveyResponse (context) {
     return saveSurveyResponse(context.state.currentSurvey)

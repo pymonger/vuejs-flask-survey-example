@@ -21,8 +21,8 @@ def fetch_surveys():
         survey = Survey(name=data['name'])
         questions = []
         for q in data['questions']:
-            question = Question(text=q['text'])
-            question.choices = [Choice(text=c['text'])
+            question = Question(text=q['question'])
+            question.choices = [Choice(text=c)
                                 for c in q['choices']]
             questions.append(question)
         survey.questions = questions
